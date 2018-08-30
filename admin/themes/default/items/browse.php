@@ -44,6 +44,7 @@ echo item_search_filters();
                 <?php endif; ?>
                 <?php
                 $browseHeadings[__('Title')] = 'Dublin Core,Title';
+                $browseHeadings[__('Identifier')] = 'Dublin Core,Identifier'; //on ajoute la cote du document dans le tableau de presentation des items.
                 $browseHeadings[__('Creator')] = 'Dublin Core,Creator';
                 $browseHeadings[__('Type')] = null;
                 $browseHeadings[__('Date Added')] = 'added';
@@ -68,7 +69,6 @@ echo item_search_filters();
                     >
                 </td>
                 <?php endif; ?>
-
                 <?php if ($item->featured): ?>
                 <td class="item-info featured">
                 <?php else: ?>
@@ -111,6 +111,7 @@ echo item_search_filters();
                         <?php fire_plugin_hook('admin_items_browse_detailed_each', array('item' => $item, 'view' => $this)); ?>
                     </div>
                 </td>
+                <td><?php echo strip_formatting(metadata('item', array('Dublin Core', 'Identifier'))); ?></td>
                 <td><?php echo strip_formatting(metadata('item', array('Dublin Core', 'Creator'))); ?></td>
                 <td>
                     <?php
